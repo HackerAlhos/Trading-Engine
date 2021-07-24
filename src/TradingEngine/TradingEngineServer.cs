@@ -15,10 +15,10 @@ namespace TradingEngine.Core
 {
     class TradingEngineServer : BackgroundService, ITradingEngine
     {
-        private readonly IOptions<TradingEngineConfiguration> _engineConfiguration;
+        private readonly IOptions<TradingEngineServerConfiguration> _engineConfiguration;
         private readonly ILogger<TradingEngineServer> _logger;
 
-        public TradingEngineServer(IOptions<TradingEngineConfiguration> engineConfiguration,
+        public TradingEngineServer(IOptions<TradingEngineServerConfiguration> engineConfiguration,
             ILogger<TradingEngineServer> logger)
         {
             _engineConfiguration = engineConfiguration ?? throw new ArgumentNullException(nameof(engineConfiguration));
