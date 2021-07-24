@@ -2,9 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
+using TradingEngine.Core.Configuration;
 
 namespace TradingEngine.Core
 {
@@ -16,13 +15,13 @@ namespace TradingEngine.Core
                 {
                     // Start with configurations.
                     services.AddOptions();
-                    services.Configure<TradingEngineConfiguration>(hostContext.Configuration.GetSection(nameof(TradingEngineConfiguration)));
+                    services.Configure<TradingEngineServerConfiguration>(hostContext.Configuration.GetSection(nameof(TradingEngineServerConfiguration)));
 
                     // Add singleton objects.
-                    services.AddSingleton<ITradingEngine, TradingEngine>();
+                    services.AddSingleton<ITradingEngine, TradingEngineServer>();
 
                     // Add hosted service.
-                    services.AddHostedService<TradingEngine>();
+                    services.AddHostedService<TradingEngineServer>();
                 }).Build();
     }
 }

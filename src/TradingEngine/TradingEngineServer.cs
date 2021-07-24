@@ -9,25 +9,32 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using TradingEngine.Core.Configuration;
+
 namespace TradingEngine.Core
 {
-    class TradingEngine : BackgroundService, ITradingEngine
+    class TradingEngineServer : BackgroundService, ITradingEngine
     {
         private readonly IOptions<TradingEngineConfiguration> _engineConfiguration;
-        private readonly ILogger<TradingEngine> _logger;
+        private readonly ILogger<TradingEngineServer> _logger;
 
-        public TradingEngine(IOptions<TradingEngineConfiguration> engineConfiguration,
-            ILogger<TradingEngine> logger)
+        public TradingEngineServer(IOptions<TradingEngineConfiguration> engineConfiguration,
+            ILogger<TradingEngineServer> logger)
         {
             _engineConfiguration = engineConfiguration ?? throw new ArgumentNullException(nameof(engineConfiguration));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        public Task RunAsync(CancellationToken token) => ExecuteAsync(token);
+
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("Trading engine online.");
+            _logger.LogInformation($"Started {nameof(TradingEngineServer)}");
             while (!stoppingToken.IsCancellationRequested)
-            { }
+            {
+
+            }
+            _logger.LogInformation($"Stopped {nameof(TradingEngineServer)}");
             return Task.CompletedTask;
         }
     }

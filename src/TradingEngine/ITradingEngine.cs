@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace TradingEngine.Core
 {
-    public interface ITradingEngine
+    interface ITradingEngine
     {
+        Task RunAsync(CancellationToken token);
     }
 }

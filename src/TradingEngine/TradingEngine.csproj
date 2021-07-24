@@ -4,7 +4,8 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <LangVersion>9</LangVersion>
-    <RootNamespace>TradingEngine.Core</RootNamespace>
+    <RootNamespace>TradingEngineServer.Core</RootNamespace>
+    <AssemblyName>TradingEngineServer.Core</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
