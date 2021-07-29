@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 using TradingEngine.Core.Configuration;
+using TradingEngineServer.Logging;
 
 namespace TradingEngine.Core
 {
@@ -16,8 +17,10 @@ namespace TradingEngine.Core
                     // Start with configurations.
                     services.AddOptions();
                     services.Configure<TradingEngineServerConfiguration>(hostContext.Configuration.GetSection(nameof(TradingEngineServerConfiguration)));
+                    services.Configure<LoggerConfiguration>(hostContext.Configuration.GetSection(nameof(LoggerConfiguration)));
 
                     // Add singleton objects.
+                    services.AddSingleton<ITextLogger, TextLogger>();
                     services.AddSingleton<ITradingEngine, TradingEngineServer>();
 
                     // Add hosted service.
