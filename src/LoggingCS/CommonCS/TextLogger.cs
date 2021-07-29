@@ -15,7 +15,7 @@ namespace TradingEngineServer.Logging
 
     }
 
-    public class TextLogger : AbstractLogger, ITextLogger
+    public sealed class TextLogger : AbstractLogger, ITextLogger
     {
         public TextLogger(IOptions<LoggerConfiguration> settings) : base()
         {
