@@ -1,0 +1,81 @@
+﻿syntax = "proto3";
+
+package TradingEngine.Proto;
+
+import "google/protobuf/timestamp.proto";
+
+service OrderEntryService
+{
+    rpc OrderAction(OrderActionUpdate) returns (OrderActionResponse) { }
+}
+
+message OrderInformation
+{
+    string Username = 1;
+    uint64 OrderId = 2;
+    int32 SecurityId = 3;
+}
+
+message ResponseTimestamp
+{
+    google.protobuf.Timestamp SendTime = 1;
+    google.protobuf.Timestamp EventTime = 2;
+}
+
+message OrderNew
+{
+    google.protobuf.Timestamp SendTime = 1;
+    OrderInformation OrderInformation = 2;
+    bool IsBuy = 3;
+    int64 Price = 4;
+    int32 Quantity = 5;
+}
+
+message OrderNewStatus
+{
+    ResponseTimestamp ResponseTimestamp = 1;
+    bool Success = 2;
+}
+
+message OrderFillStatus
+{
+    ResponseTimestamp ResponseTimestamp = 1;
+    OrderInformation OrderInformation = 2;
+    int32 FillId = 3;
+    string ExecutionId = 4;
+    int64 Price = 5;
+    int32 Quantity = 6;
+}
+
+message OrderCancel
+{
+    google.protobuf.Timestamp SendTime = 1;
+    OrderInformation OrderInformation = 3;
+}
+
+message OrderCancelStatus
+{
+    ResponseTimestamp ResponseTimestamp = 1;
+    OrderInformation OrderInformation = 2;
+    bool Success = 3;
+}
+
+message OrderActionUpdate
+{
+    oneof UpdateType
+    {
+        OrderNew OrderNewUpdate = 1;
+        OrderCancel OrderCancelUpdate = 2;
+    }
+}
+
+message OrderActionResponse
+{
+    int32 ResponseId = 1;
+    oneof ResponseType
+    {
+        OrderNewStatus OrderNewResponse = 2;
+        OrderCancelStatus OrderCancelResponse = 3;
+        OrderFillStatus OrderFillResponse = 4;
+    }
+}
