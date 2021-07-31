@@ -53,13 +53,13 @@ namespace TradingEngineServer.Logging
         {
             return $"[{logInformation.LogTime:yyyy-MM-dd HH:mm:ss.fffffff}] " +
                 $"[{logInformation.ThreadName,-30}:{logInformation.ThreadId:000}] " +
-                $"[{logInformation.LogLevel}] {logInformation.Message}";
+                $"[{logInformation.Module}] [{logInformation.LogLevel}] {logInformation.Message}";
         }
 
         protected override void Log(LogLevel logLevel, string module, string message)
         {
             _logBlock.Post(new LogInformation(logLevel, DateTime.Now,
-                Thread.CurrentThread.ManagedThreadId, Thread.CurrentThread.Name, message));
+                Thread.CurrentThread.ManagedThreadId, Thread.CurrentThread.Name, message, module));
         }
 
         ~TextLogger()

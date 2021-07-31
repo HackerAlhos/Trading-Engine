@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TradingEngineServer.Logging
 {
-    public record LogInformation(LogLevel LogLevel, DateTime LogTime, int ThreadId, string ThreadName, string Message);
+    public record LogInformation(LogLevel LogLevel, DateTime LogTime, int ThreadId, string ThreadName, string Message, string Module);
 }
 
 namespace System.Runtime.CompilerServices
