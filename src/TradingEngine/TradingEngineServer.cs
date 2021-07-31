@@ -10,31 +10,32 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using TradingEngine.Core.Configuration;
+using TradingEngineServer.Logging;
 
 namespace TradingEngine.Core
 {
     class TradingEngineServer : BackgroundService, ITradingEngine
     {
         private readonly IOptions<TradingEngineServerConfiguration> _engineConfiguration;
-        private readonly ILogger<TradingEngineServer> _logger;
+        private readonly ITextLogger _textLogger;
 
         public TradingEngineServer(IOptions<TradingEngineServerConfiguration> engineConfiguration,
-            ILogger<TradingEngineServer> logger)
+            ITextLogger textLogger)
         {
             _engineConfiguration = engineConfiguration ?? throw new ArgumentNullException(nameof(engineConfiguration));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _textLogger = textLogger ?? throw new ArgumentNullException(nameof(textLogger));
         }
 
         public Task RunAsync(CancellationToken token) => ExecuteAsync(token);
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation($"Started {nameof(TradingEngineServer)}");
+            _textLogger.Information(nameof(TradingEngineServer), $"Starting Trading Engine");
             while (!stoppingToken.IsCancellationRequested)
             {
 
             }
-            _logger.LogInformation($"Stopped {nameof(TradingEngineServer)}");
+            _textLogger.Information(nameof(TradingEngineServer), $"Stopping Trading Engine");
             return Task.CompletedTask;
         }
     }
