@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using TradingEngine.Core.Configuration;
-using TradingEngineServer.Logging;
+using TradingEngine.Logging;
 
 namespace TradingEngine.Core
 {

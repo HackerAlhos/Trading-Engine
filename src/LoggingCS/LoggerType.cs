@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TradingEngineServer.Logging
+namespace TradingEngine.Logging
 {
     public enum LoggerType
     {
         Text,
+        Database,
+        Console,
     }
 }

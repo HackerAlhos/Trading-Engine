@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 
-namespace TradingEngineServer.Logging
+namespace TradingEngine.Logging
 {
     public interface ITextLogger : ILogger, IDisposable
     {

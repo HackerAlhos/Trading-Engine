@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 using TradingEngine.Core.Configuration;
-using TradingEngineServer.Logging;
+using TradingEngine.Logging;
 
 namespace TradingEngine.Core
 {
